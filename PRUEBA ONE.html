@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeTech | Tecnología y Mantenimiento</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #041020, #071a33, #075985);
+            color: white;
+            padding: 12px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00b4ff;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00b4ff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #071a33, #075985, #00b4ff);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        section {
+            padding: 70px 8%;
+        }
+
+        .titulo {
+            text-align: center;
+            font-size: 32px;
+            color: #075985;
+            margin-bottom: 35px;
+        }
+
+        .contenido {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .texto {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .texto:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .texto h3 {
+            color: #075985;
+            margin-bottom: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            min-height: 290px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-9px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            padding: 18px;
+            color: #075985;
+        }
+
+        .card-info {
+            display: none;
+            padding: 30px 20px;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffffff, #eaf6ff);
+        }
+
+        .card-info h3 {
+            color: #075985;
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .card-info p {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .card-info .volver {
+            background-color: #075985;
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .card-info .volver:hover {
+            background-color: #00b4ff;
+        }
+
+        .card.activa img,
+        .card.activa > h3 {
+            display: none;
+        }
+
+        .card.activa .card-info {
+            display: flex;
+        }
+
+        .relacionados {
+            background: #e5eef7;
+        }
+
+        .relacionados h3 {
+            color: #075985;
+            margin: 25px 0 10px;
+        }
+
+        .relacionados ol {
+            padding-left: 25px;
+        }
+
+        .relacionados a {
+            color: #075985;
+            text-decoration: none;
+        }
+
+        .relacionados a:hover {
+            text-decoration: underline;
+            color: #00a2e8;
+        }
+
+        .contacto {
+            background: linear-gradient(135deg, #071a33, #075985);
+            color: white;
+            text-align: center;
+        }
+
+        .contacto .titulo {
+            color: #00b4ff;
+        }
+
+        .contacto p {
+            margin: 10px 0;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            background: #075985;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-right: 8px;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background: #00b4ff;
+        }
+
+        select,
+        textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            background: #041020;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .hero {
+                padding: 70px 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            section {
+                padding: 50px 5%;
+            }
+
+            .titulo {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .logo-img {
+                width: 65px;
+                height: 65px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 55px 15px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            section {
+                padding: 40px 15px;
+            }
+
+            .titulo {
+                font-size: 25px;
+            }
+
+            .texto {
+                padding: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card img {
+                height: 230px;
+            }
+
+            .card {
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+
+    <header>
+
+        <div class="logo-container">
+
+            <!-- LOGO INTEGRADO -->
+            <img class="logo-img"
+                alt="Logo PrimeTech Care"
+                src="logo.png.jpeg">
+
+            <div class="logo">PrimeTech</div>
+
+        </div>
+
+        <nav>
+            <a href="#ini">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#mantenimiento">Mantenimiento</a>
+            <a href="#encuesta">Encuesta</a>
+            <a href="#cont">Contacto</a>
+        </nav>
+
+    </header>
+
+    <!-- PORTADA -->
+
+    <div class="hero" id="ini">
+
+        <h1>Bienvenidos a PrimeTech</h1>
+
+        <p>
+            Soluciones tecnológicas, mantenimiento y cuidado
+            para tus equipos de cómputo.
+        </p>
+
+    </div>
+
+    <!-- INICIO -->
+
+    <section>
+
+        <h2 class="titulo">¿Quiénes somos?</h2>
+
+        <div class="contenido">
+
+            <div class="texto">
+
+                <p>
+                    Somos un emprendimiento dedicado a brindar servicios de limpieza
+                    y mantenimiento de equipos de cómputo. Nuestro propósito es
+                    contribuir al buen funcionamiento, rendimiento y conservación
+                    de las computadoras mediante un servicio responsable, eficiente
+                    y de calidad. Nos enfocamos en satisfacer las necesidades de
+                    nuestros clientes, ofreciendo soluciones confiables que permitan
+                    mantener sus equipos en óptimas condiciones y prolongar su vida útil.
+                </p>
+
+            </div>
+
+            <div class="texto">
+
+                <h3>Misión</h3>
+
+                <p>
+                    Nuestra misión es brindar servicios especializados de limpieza
+                    y mantenimiento de equipos de cómputo en Villa Nueva y en todo
+                    el territorio nacional, ofreciendo soluciones eficientes,
+                    responsables y de calidad. Nos comprometemos a satisfacer las
+                    necesidades de nuestros clientes mediante un servicio profesional
+                    y confiable, contribuyendo al buen funcionamiento y prolongando
+                    la vida útil de sus equipos.
+                </p>
+
+            </div>
+
+            <div class="texto">
+
+                <h3>Visión</h3>
+
+                <p>
+                    Nos vemos como un emprendimiento reconocido por brindar servicios
+                    de limpieza y mantenimiento de equipos de cómputo con calidad,
+                    responsabilidad y profesionalismo, logrando la confianza y
+                    satisfacción de nuestros clientes. Aspiramos a crecer y ampliar
+                    nuestros servicios, convirtiéndonos en una opción destacada
+                    en el área de mantenimiento tecnológico.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUCTOS -->
+
+    <section id="productos">
+
+        <h2 class="titulo">Nuestros productos</h2>
+
+        <div class="grid">
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://static.kemikcdn.com/2026/04/23912-24B35H31200x12001.-700x700.jpg"
+                    alt="Monitor">
+
+                <h3>Monitor</h3>
+
+                <div class="card-info">
+
+                    <h3>Monitor</h3>
+
+                    <p>
+                        Pantalla ideal para trabajar, estudiar, navegar por internet
+                        y disfrutar contenido multimedia con una imagen clara y cómoda.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://static.kemikcdn.com/2026/05/KM-300-ETOUCH-1200x1200-1-1-768x768.-700x700.jpg"
+                    alt="Teclado">
+
+                <h3>Teclado</h3>
+
+                <div class="card-info">
+
+                    <h3>Teclado</h3>
+
+                    <p>
+                        Accesorio esencial para escribir y controlar tu computadora.
+                        Su diseño permite trabajar de forma práctica y cómoda.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://static.kemikcdn.com/2026/01/ID011XTK55-1200x1200-9.-700x700.jpg"
+                    alt="Mouse">
+
+                <h3>Mouse</h3>
+
+                <div class="card-info">
+
+                    <h3>Mouse</h3>
+
+                    <p>
+                        Dispositivo utilizado para controlar el cursor y navegar
+                        fácilmente por las diferentes funciones de la computadora.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://static.kemikcdn.com/2025/05/R555008G500GRTX3050-NSX-1200x1200-01.-700x700.jpg"
+                    alt="Gabinete">
+
+                <h3>Gabinete</h3>
+
+                <div class="card-info">
+
+                    <h3>Gabinete</h3>
+
+                    <p>
+                        Estructura que protege y organiza los componentes internos
+                        de la computadora, como la tarjeta madre, fuente y almacenamiento.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SERVICIOS -->
+
+    <section id="servicios">
+
+        <h2 class="titulo">Nuestros servicios</h2>
+
+        <div class="grid">
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://compufy.co/cdn/shop/articles/how-to-clean-gaming-pc-740x494.jpg?v=1754190227"
+                    alt="Mantenimiento de CPU">
+
+                <h3>Mantenimiento de CPU</h3>
+
+                <div class="card-info">
+
+                    <h3>Mantenimiento de CPU</h3>
+
+                    <p>
+                        Limpieza y revisión de los componentes internos para ayudar
+                        a mantener un buen rendimiento y prevenir problemas por polvo.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTpyVvoJTZBgy-qAYSUuNO06mUsOdm1ajNaqna7csWZNiEV8wpszOQL_g&s=10"
+                    alt="Soporte en software">
+
+                <h3>Soporte en Software</h3>
+
+                <div class="card-info">
+
+                    <h3>Soporte en Software</h3>
+
+                    <p>
+                        Asistencia para resolver problemas de programas, configuración
+                        del sistema y otras dificultades relacionadas con el software.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://guide-images.cdn.ifixit.com/igi/5bNNPD1mBk2YZHG6.medium"
+                    alt="Cambio de pasta térmica">
+
+                <h3>Cambio de pasta térmica</h3>
+
+                <div class="card-info">
+
+                    <h3>Cambio de pasta térmica</h3>
+
+                    <p>
+                        Reemplazo de la pasta térmica del procesador para mejorar
+                        la transferencia de calor y ayudar a mantener temperaturas adecuadas.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card" onclick="mostrarInfo(this)">
+
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAgwlvYQiXyt6eDAoK_wfpDbUBPje38FDU9RO56tgtYB2wiKiVOSZRzSg&s=10"
+                    alt="Tutorial de limpieza">
+
+                <h3>Tutorial de limpieza</h3>
+
+                <div class="card-info">
+
+                    <h3>Tutorial de limpieza</h3>
+
+                    <p>
+                        Aprende los pasos básicos para limpiar correctamente
+                        tu computadora y mantener sus componentes libres de polvo.
+                    </p>
+
+                    <button class="volver" onclick="cerrarInfo(event, this)">
+                        Volver
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MANTENIMIENTO TECNOLÓGICO -->
+
+    <section id="mantenimiento">
+
+        <h2 class="titulo">Mantenimiento Tecnológico</h2>
+
+        <div class="contenido">
+
+            <div class="texto">
+
+                <h3>¿Qué es el mantenimiento tecnológico?</h3>
+
+                <p>
+                    El mantenimiento de tecnología consiste en el conjunto de acciones
+                    y revisiones periódicas o de reparación aplicadas a equipos
+                    informáticos y sistemas para asegurar su óptimo funcionamiento,
+                    alargar su vida útil y evitar pérdidas de información.
+                </p>
+
+            </div>
+
+            <div class="texto">
+
+                <h3>Tipos de Mantenimiento Informático</h3>
+
+                <p>
+                    <strong>Preventivo:</strong>
+                    Acciones anticipadas como limpieza física de polvo,
+                    actualización de software y respaldos de datos para reducir
+                    fallas inesperadas.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Correctivo:</strong>
+                    Reparación o sustitución de componentes de hardware o software
+                    dañados una vez que el fallo ya ha ocurrido.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Predictivo:</strong>
+                    Monitorización constante en tiempo real, como la temperatura
+                    de la CPU y el estado de la batería, para detectar señales
+                    de alerta antes de que se conviertan en averías.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Evolutivo:</strong>
+                    Actualizaciones y mejoras continuas para adaptar los recursos
+                    tecnológicos a nuevas necesidades o tecnologías futuras.
+                </p>
+
+            </div>
+
+            <div class="texto">
+
+                <h3>Acciones Básicas Recomendadas</h3>
+
+                <p>
+                    <strong>Limpieza de hardware:</strong>
+                    Eliminar el polvo acumulado en ventiladores para prevenir
+                    el sobrecalentamiento.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Optimización de software:</strong>
+                    Borrar archivos temporales, vaciar la papelera y desinstalar
+                    programas que no utilices.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Seguridad:</strong>
+                    Mantener el sistema operativo actualizado y contar con un
+                    antivirus activo.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>Copias de seguridad:</strong>
+                    Guardar periódicamente tus archivos importantes en la nube
+                    o en un disco duro externo.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ENCUESTA -->
+
+    <section id="encuesta">
+
+        <h2 class="titulo">Encuesta de satisfacción</h2>
+
+        <div class="contenido">
+
+            <div class="texto">
+
+                <!-- CAMBIO HECHO AQUÍ -->
+                <form onsubmit="window.location.href='#ini'; return false;">
+
+                    <p>
+                        <strong>
+                            1. ¿Cómo calificarías nuestros productos?
+                        </strong>
+                    </p>
+
+                    <input type="radio" name="productos" value="Excelente">
+                    Excelente
+                    <br>
+
+                    <input type="radio" name="productos" value="Bueno">
+                    Bueno
+                    <br>
+
+                    <input type="radio" name="productos" value="Regular">
+                    Regular
+                    <br>
+
+                    <input type="radio" name="productos" value="Malo">
+                    Malo
+
+                    <br><br>
+
+                    <p>
+                        <strong>
+                            2. ¿Cómo calificarías nuestros servicios?
+                        </strong>
+                    </p>
+
+                    <input type="radio" name="servicios" value="Excelente">
+                    Excelente
+                    <br>
+
+                    <input type="radio" name="servicios" value="Bueno">
+                    Bueno
+                    <br>
+
+                    <input type="radio" name="servicios" value="Regular">
+                    Regular
+                    <br>
+
+                    <input type="radio" name="servicios" value="Malo">
+                    Malo
+
+                    <br><br>
+
+                    <p>
+                        <strong>
+                            3. ¿Qué servicio te interesa más?
+                        </strong>
+                    </p>
+
+                    <select name="servicio">
+
+                        <option value="">
+                            Selecciona una opción
+                        </option>
+
+                        <option>
+                            Mantenimiento de CPU
+                        </option>
+
+                        <option>
+                            Soporte en Software
+                        </option>
+
+                        <option>
+                            Cambio de pasta térmica
+                        </option>
+
+                        <option>
+                            Tutorial de limpieza
+                        </option>
+
+                    </select>
+
+                    <br><br>
+
+                    <p>
+                        <strong>
+                            4. ¿Recomendarías PrimeTech?
+                        </strong>
+                    </p>
+
+                    <input type="radio" name="recomendar" value="Sí">
+                    Sí
+                    <br>
+
+                    <input type="radio" name="recomendar" value="Tal vez">
+                    Tal vez
+                    <br>
+
+                    <input type="radio" name="recomendar" value="No">
+                    No
+
+                    <br><br>
+
+                    <p>
+                        <strong>
+                            5. ¿Qué podemos mejorar?
+                        </strong>
+                    </p>
+
+                    <textarea name="comentario" rows="5" cols="50"></textarea>
+
+                    <br><br>
+
+                    <input type="submit" value="Enviar encuesta">
+
+                    <input type="reset" value="Borrar">
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTENIDO RELACIONADO -->
+
+    <section class="relacionados">
+
+        <h2 class="titulo">Contenido relacionado</h2>
+
+        <div class="contenido">
+
+            <h3>Páginas similares</h3>
+
+            <ol>
+
+                <li>
+                    <a href="https://www.compugangas.com.gt/" target="_blank">
+                        CompuGangas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.gangasvideogames.com/" target="_blank">
+                        Gangas VideoGames
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://crcompumania.com/reparacion-y-mantenimiento-de-computadoras-en-guatemala/"
+                        target="_blank">
+                        CR Compumania
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://compugangas.com.gt/mantenimiento-preventivo-" target="_blank">
+                        CompuGanga
+                    </a>
+                </li>
+
+            </ol>
+
+            <h3>Videos relacionados</h3>
+
+            <ol>
+
+                <li>Video 1</li>
+                <li>Video 2</li>
+                <li>Video 3</li>
+                <li>Video 4</li>
+
+            </ol>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACTO -->
+
+    <section class="contacto" id="cont">
+
+        <h2 class="titulo">Contáctanos</h2>
+
+        <p>
+            <strong>Correo electrónico:</strong>
+            primetechcare@gmail.com
+        </p>
+
+        <p>
+            <strong>Dirección:</strong>
+            Zona 1, Villa Nueva
+        </p>
+
+        <p>
+            <strong>Teléfono:</strong>
+            6635-9892
+        </p>
+
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+
+    <footer>
+
+        <p>
+            PrimeTech | Patrick Owen Tzurec Bocel
+        </p>
+
+        <p>
+            4to Bachillerato
+        </p>
+
+        <p>
+            © 2026 Todos los derechos reservados
+        </p>
+
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function mostrarInfo(card) {
+            card.classList.add("activa");
+        }
+
+        function cerrarInfo(event, boton) {
+
+            event.stopPropagation();
+
+            const card = boton.closest(".card");
+
+            card.classList.remove("activa");
+        }
+
+    </script>
+
+</body>
+
+</html>
